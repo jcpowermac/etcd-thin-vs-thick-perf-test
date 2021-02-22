@@ -1,0 +1,15 @@
+---
+variant: rhcos
+version: 0.1.0
+passwd:
+  users:
+  - name: core
+    password_hash: $6$vCzvDv4KqESoIWoC$VzSDagivG0.QhULhbMhW1r25XlucHfalRJq7nWF3p2.HQ/UqM0S0ClbwtnVEDDLv5Daa5UUm4PDqoGa0sLZOm1
+    ssh_authorized_keys:
+       - "ssh-rsa"
+storage:
+  files:
+    - path: /var/tmp/fio.sh
+      contents:
+        local: fio.sh
+      mode: 0755

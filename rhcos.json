@@ -1,0 +1,9 @@
+{
+   "DiskProvisioning": "thin",
+   "MarkAsTemplate": false,
+   "PowerOn": false,
+   "InjectOvfEnv": false,
+   "WaitForIP": false,
+   "Name": "rhcos",
+   "NetworkMapping":[{"Name":"VM Network","Network":"VM Network"}]
+}
