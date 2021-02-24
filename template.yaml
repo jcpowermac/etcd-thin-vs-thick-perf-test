@@ -6,7 +6,7 @@ passwd:
   - name: core
     password_hash: $6$vCzvDv4KqESoIWoC$VzSDagivG0.QhULhbMhW1r25XlucHfalRJq7nWF3p2.HQ/UqM0S0ClbwtnVEDDLv5Daa5UUm4PDqoGa0sLZOm1
     ssh_authorized_keys:
-       - "ssh-rsa"
+       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDsVNdmjRvtbazSxHGd+2E+Tp2Q63iidUppN5Z/naZL3HeQM4wXnEAGsp7vtwePG0EzI9CWTyObu4iZ1nm6PgzY0cwNiayLkuVOw+0ql527hjJmBBaxHmXrtrDpVBPAy6zfS6OrGTQpHeVBjEokyV3VXFkjoR3Xw5dudrKmrfMVKsjuI69bG3TAvWFHcPDNtx+0RPiCWmx/xOLjHr8oJvm/P0NyB/5QzZamt/x9iESBur+KmwanUocs0Qixr+Fw8dhhrTZhI1HV1rst4nOAOoAIC+yTzMrK2QMTwZhMJvan38O+yjgcSQYRs7IGMj6OjnonRCBP5KCoumCvzIDJvscm1NbzkBRgOe5uOFBG9lsgSd9ggLzQhWw2L7PuElVCt0esv8Emlej9QwLZllOCgsDngOFGtlX5R3yphhKz4r3oYYSdhmO2Vr5Qp/VeZBiw9tXJavkeZOd42/hdZ50hBL6xFf77LDqMKN3vHPRivubYn9e8HaUPhviLmaaSnIYGvQHlmp2T+2DNVu8iOT5Vb69Ca4EvCERID2tsLq6gjG/cYhSw6DkGX/MxEGZ1NICgPHMFtb/BmzEu88qdjWM+ENJZJy41AwHKf+2YXVn15xXeZZdTTyVobWGbpbTnfUwa+hfpEXU8wKF7EiBZEU73tqj5HyVHI+P/VhJLTYwX/+Huw== jlcallen@bromine.virtomation.com"
 storage:
   files:
     - path: /var/tmp/fio.sh

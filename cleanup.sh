@@ -1,18 +1,10 @@
 #!/bin/bash
 
 set -e
-#set -x
 
-export GOVC_URL=
-export GOVC_USERNAME="root"
-export GOVC_PASSWORD=""
-export GOVC_INSECURE=1
-export GOVC_DATASTORE=datastore1
+source ./secrets/sensitive.sh
 
 
-IPADDR=""
-GATEWAY=""
-MASK=""
 VM_NAME=rhcos
 
 IGNITION_CONFIG=rhcos.yaml

@@ -1,7 +1,7 @@
 #!/bin/bash
+FILES=$(find var/mnt -type f -regextype sed -regex '.*/etcd[b-k]/results[b-k][0-9][0]*.json')
 
-FILES=$(find var -type f -name results.json)
+jq -s 'map(.jobs[])' ${FILES} > jobs.json
 
-printf "name,write.iops_mean,write.lat_ns_mean,write.lat_ns.max,sync.lat_ns.mean,sync.lat_ns.max\n"
-jq '"\(.disk_util[].name), \(.jobs[].write.iops_mean), \(.jobs[].write.lat_ns.mean), \(.jobs[].write.lat_ns.max), \(.jobs[].sync.lat_ns.mean), \(.jobs[].sync.lat_ns.max)"' ${FILES}
+jq -r '.[] | "\(.jobname), \(.sync.lat_ns.mean), \(.sync.lat_ns.max), \(.sync.lat_ns.percentile | ."99.000000" ), \(.sync.lat_ns.percentile | ."99.990000" )"' jobs.json
 

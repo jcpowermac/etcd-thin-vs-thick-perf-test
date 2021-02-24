@@ -1,20 +1,10 @@
 #!/bin/bash
 
 set -e
-#set -x
 
-export GOVC_URL=
-export GOVC_USERNAME=""
-export GOVC_PASSWORD=""
-export GOVC_INSECURE=1
-export GOVC_DATASTORE=datastore1
+source ./secrets/sensitive.sh
 
-
-IPADDR=""
-GATEWAY=""
-MASK=""
 VM_NAME=rhcos
-
 IGNITION_CONFIG=rhcos.yaml
 TEMPLATE_IGNITION_CONFIG=template.yaml
 
@@ -59,7 +49,7 @@ for l in {b..f}
 do
     ./govc vm.disk.create -ds etcd -vm ${VM_NAME} -name ${VM_NAME}/disk${d} -size 5G -eager=false -thick=false
     printf -v temp_disk '{"device":"/dev/sd%s","wipe_table":true,"partitions":[{"number":1,"label":"etcd%s"}]}\n' "$l" "$d"
-    printf -v temp_filesystem '{"path":"/var/mnt/etcd%s","device":"/dev/disk/by-partlabel/etcd%s","format":"xfs","wipe_filesystem":true,"label":"etcd%s","with_mount_unit":true}\n' "$d" "$d" "$d"
+    printf -v temp_filesystem '{"path":"/var/mnt/etcd%s","device":"/dev/disk/by-partlabel/etcd%s","format":"xfs","wipe_filesystem":true,"label":"etcd%s","with_mount_unit":true}\n' "$l" "$d" "$d"
     disks+=$temp_disk
     filesystems+=$temp_filesystem
     d=$((d+1))
@@ -70,7 +60,7 @@ for l in {g..k}
 do
     ./govc vm.disk.create -ds etcd -vm ${VM_NAME} -name ${VM_NAME}/disk${d} -size 5G -eager=true -thick=true
     printf -v temp_disk '{"device":"/dev/sd%s","wipe_table":true,"partitions":[{"number":1,"label":"etcd%s"}]}\n' "$l" "$d"
-    printf -v temp_filesystem '{"path":"/var/mnt/etcd%s","device":"/dev/disk/by-partlabel/etcd%s","format":"xfs","wipe_filesystem":true,"label":"etcd%s","with_mount_unit":true}\n' "$d" "$d" "$d"
+    printf -v temp_filesystem '{"path":"/var/mnt/etcd%s","device":"/dev/disk/by-partlabel/etcd%s","format":"xfs","wipe_filesystem":true,"label":"etcd%s","with_mount_unit":true}\n' "$l" "$d" "$d"
     disks+=$temp_disk
     filesystems+=$temp_filesystem
     d=$((d+1))
@@ -88,4 +78,3 @@ CONFIG_DATA=$(./fcct --files-dir . --strict < rhcos.yaml | tee rhcosign.json | b
     -e guestinfo.ignition.config.data.encoding="base64" \
     -e guestinfo.afterburn.initrd.network-kargs="ip=${IPADDR}::${GATEWAY}:${MASK}:rhcos:ens192:none:8.8.8.8"
 
-#printf "storage:\n" >> "${IGNITION_CONFIG}"
