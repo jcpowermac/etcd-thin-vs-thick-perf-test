@@ -5,7 +5,6 @@ set -e
 source ./secrets/sensitive.sh
 
 
-VM_NAME=rhcos
 
 IGNITION_CONFIG=rhcos.yaml
 TEMPLATE_IGNITION_CONFIG=template.yaml
